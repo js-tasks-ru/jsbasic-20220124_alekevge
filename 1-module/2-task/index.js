@@ -5,12 +5,23 @@ function print(text) {
   console.log(text);
 }
 
+function checkSpace(name)
+{
+  let i=0
+  while (name[i])
+  {
+    if (name[i]===" ") return true
+    i++
+  }
+  return false
+}
+
 /**
  * Эту функцию нужно поменять так,
  * чтобы функция sayHello работала корректно
  */
 function isValid(name) {
-  // ваш код...
+  return !!name && name['length'] >= 4 && !checkSpace(name)
 }
 
 function sayHello() {
