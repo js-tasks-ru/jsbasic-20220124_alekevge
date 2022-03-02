@@ -87,12 +87,6 @@ tooggleDragAndDrop(key)
   
   document.onpointermove = null
   this.elem.classList.remove("slider_dragging")
-  
-  let ev = new CustomEvent('slider-change', { 
-                                              detail: this.value, 
-                                              bubbles: true // событие всплывает - это понадобится в дальнейшем
-                                            })
-  this.elem.dispatchEvent(ev)
 }
 
 moving(events)
@@ -102,7 +96,7 @@ moving(events)
   let width = elem_rect.width
   let leftPercents = Math.round(offsetX / width *100)  
   let value =  Math.round(offsetX / (width/(this.steps-1)))
-
+  
   this.thumb.style.left = `${leftPercents}%`;
   this.progress.style.width = `${leftPercents}%`;
   this.elem.querySelector(".slider__value").textContent = value
