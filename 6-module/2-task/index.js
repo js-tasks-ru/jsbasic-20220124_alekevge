@@ -2,11 +2,10 @@ export default class ProductCard {
   constructor(product) {
   this.elem=document.createElement("div")
   this.elem.classList.add("card")
-  product.price=product.price.toFixed(2)
   this.elem.innerHTML=`
   <div class="card__top">
       <img src="/assets/images/products/${product.image}" class="card__image" alt="product">
-      <span class="card__price">€${product.price}</span>
+      <span class="card__price">€${product.price.toFixed(2)}</span>
   </div>
   <div class="card__body">
       <div class="card__title">${product.name}</div>
