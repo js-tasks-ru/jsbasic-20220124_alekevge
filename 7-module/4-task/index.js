@@ -35,6 +35,7 @@ slide(ev)
   let elem_rect = this.elem.getBoundingClientRect()
   let offsetX = ev.pageX-elem_rect.left
   let width = elem_rect.width
+  if (width == 0 || this.steps == 1) return
   let value =  Math.round(offsetX / (width/(this.steps-1)))
 
   if (value!=this.value) this.setValue(value)
@@ -94,6 +95,7 @@ moving(events)
   let elem_rect = this.elem.getBoundingClientRect()
   let offsetX = events.clientX-elem_rect.left
   let width = elem_rect.width
+  if (width == 0 || this.steps == 1) return
   let leftPercents = Math.round(offsetX / width *100)  
   let value =  Math.round(offsetX / (width/(this.steps-1)))
   
