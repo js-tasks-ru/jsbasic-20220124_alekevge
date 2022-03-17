@@ -62,7 +62,7 @@ export default class RibbonMenu {
       btn.addEventListener("click",(ev)=>{this.nav.scrollBy(dx,0)})
     }
 
-    this.nav.addEventListener("scroll",(ev)=>{this.tooggle()})
+    this.nav.addEventListener("scroll",(ev)=>{this.tooggle.bind(this)})
   }
 
   tooggle()
