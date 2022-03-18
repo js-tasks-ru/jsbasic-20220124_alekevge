@@ -21,10 +21,10 @@ export default class StepSlider {
     this.slider_steps=this.elem.querySelector(".slider__steps")
     for (let i = 0; i < steps; i++) {
       const elem = document.createElement("span")
-      if (value==i) elem.classList.add("slider__step-active")
       this.slider_steps.appendChild(elem)
     }
-  
+    
+    this.setValue(value)
     this.addDragAndDrop()
     this.elem.addEventListener("click",(ev)=>this.slide(ev) )
 }
@@ -35,6 +35,8 @@ slide(ev)
   let elem_rect = this.elem.getBoundingClientRect()
   let offsetX = ev.pageX-elem_rect.left
   let width = elem_rect.width
+  if (offsetX < 0) offsetX = 0
+  else  if (offsetX > width) offsetX = width
   if (width == 0 || this.steps == 1) return
   let value =  Math.round(offsetX / (width/(this.steps-1)))
 
@@ -72,7 +74,8 @@ setValue(value)
 addDragAndDrop()
 {
   this.thumb.addEventListener("pointerdown",()=>{this.tooggleDragAndDrop(1)})
-  document.addEventListener("pointerup",(ev)=>{this.slide(ev);this.tooggleDragAndDrop(0)})
+  document.addEventListener("pointerup",(ev)=>{ if (this.elem.classList.contains("slider_dragging")) this.slide(ev); 
+                                                this.tooggleDragAndDrop(0)}) 
 }
 
 tooggleDragAndDrop(key)
@@ -95,6 +98,8 @@ moving(events)
   let elem_rect = this.elem.getBoundingClientRect()
   let offsetX = events.clientX-elem_rect.left
   let width = elem_rect.width
+  if (offsetX < 0) offsetX = 0
+  else  if (offsetX > width) offsetX = width
   if (width == 0 || this.steps == 1) return
   let leftPercents = Math.round(offsetX / width *100)  
   let value =  Math.round(offsetX / (width/(this.steps-1)))
