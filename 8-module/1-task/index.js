@@ -10,6 +10,7 @@ export default class CartIcon {
   render() {
     this.elem = createElement('<div class="cart-icon"></div>');
     this.elem.style.position="fixed"
+    this.elem.style.zIndex=10;
   }
 
   update(cart) {

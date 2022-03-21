@@ -62,7 +62,7 @@ export default class RibbonMenu {
       btn.addEventListener("click",(ev)=>{this.nav.scrollBy(dx,0)})
     }
 
-    this.nav.addEventListener("scroll",(ev)=>{this.tooggle()})
+    this.nav.addEventListener("scroll",this.tooggle.bind(this));
   }
 
   tooggle()
@@ -70,14 +70,14 @@ export default class RibbonMenu {
     
     let left_btn=this.elem.querySelector(".ribbon__arrow_left")
     let right_btn=this.elem.querySelector(".ribbon__arrow_right")
-    changeVisibility(this.nav.scrollLeft,left_btn)
+    this.changeVisibility(this.nav.scrollLeft,left_btn)
 
     let scrollWidth = this.nav.scrollWidth;
     let scrollLeft = this.nav.scrollLeft;
     let clientWidth = this.nav.clientWidth;
     
     let scrollRight = scrollWidth - scrollLeft - clientWidth; 
-    changeVisibility(scrollRight,right_btn)
+    this.changeVisibility(scrollRight,right_btn)
 
   }
 
